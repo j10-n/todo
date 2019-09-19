@@ -79,13 +79,20 @@
   border-radius: 5px;
   margin-top: 10px;
 
-  cursor: pointer;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  &:not(.complete) {
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
 
-  &:active {
-    transform: scale(0.95);
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 5px #eeeeee;
+    }
   }
-  &:hover {
-    box-shadow: 0 0 0 5px #eeeeee;
+  &.complete {
+    text-decoration: line-through;
+    opacity: 0.8;
   }
 }
