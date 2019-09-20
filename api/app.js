@@ -105,6 +105,7 @@ app.post("/lists/:listId/tasks", (req, res) => {
 
 /**
  * PATCH /lists/:listId/tasks/:taskId
+ * Purpose: Update an existing task
  */
 app.patch("/lists/:listId/tasks/:taskId", (req, res) => {
   Task.findOneAndUpdate(
@@ -117,6 +118,19 @@ app.patch("/lists/:listId/tasks/:taskId", (req, res) => {
     }
   ).then(() => {
     res.sendStatus(200);
+  });
+});
+
+/**
+ * DELETE /lists/:listId/tasks/:taskId
+ * Purpose: Delete a task
+ */
+app.delete("/lists/:listId/tasks/:taskId", (req, res) => {
+  Task.findOneAndRemove({
+    _id: req.params.taskId,
+    _listId: req.params.listId
+  }).then(removedTaskDoc => {
+    res.send(removedTaskDoc);
   });
 });
 
