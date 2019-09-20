@@ -103,6 +103,23 @@ app.post("/lists/:listId/tasks", (req, res) => {
   });
 });
 
+/**
+ * PATCH /lists/:listId/tasks/:taskId
+ */
+app.patch("/lists/:listId/tasks/:taskId", (req, res) => {
+  Task.findOneAndUpdate(
+    {
+      _id: req.params.taskId,
+      _listId: req.params.listId
+    },
+    {
+      $set: req.body
+    }
+  ).then(() => {
+    res.sendStatus(200);
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server is listening on port 3000");
 });
