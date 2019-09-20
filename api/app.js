@@ -65,8 +65,13 @@ app.patch("/lists/:id", (req, res) => {
  * DELETE /lists/:id
  * Purpose: Delete a list
  */
-app.delete("/lists/id", (req, res) => {
+app.delete("/lists/:id", (req, res) => {
   // Delete the specified list (document with id in the URL)
+  List.findOneAndRemove({
+    _id: req.params.id
+  }).then(removedListDoc => {
+    res.send(removedListDoc);
+  });
 });
 app.listen(3000, () => {
   console.log("Server is listening on port 3000");
