@@ -89,6 +89,20 @@ app.get("/lists/:listId/tasks", (req, res) => {
 });
 
 /**
+ * GET /lists/:listId/tasks/:taskId
+ * Purpose: Get single task from a specific list
+ */
+
+app.get("/lists/:listId/tasks/:taskId", (req, res) => {
+  Task.findOne({
+    _id: req.params.taskId,
+    _listId: req.params.listId
+  }).then(task => {
+    res.send(task);
+  });
+});
+
+/**
  * POST /lists/:listId/tasks
  * Purpose: Create a new task in a specific list
  */
