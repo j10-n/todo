@@ -3,7 +3,7 @@
     <h1 class="title">Create A New Task</h1>
 
     <input
-      #listTitleInput
+      #taskTitleInput
       class="input has-background-light is-medium"
       type="text"
       placeholder="Enter task name..."
@@ -16,7 +16,7 @@
       </button>
       <button
         class="button is-primary has-text-white is-medium"
-        (click)="createNewTask(listTitleInput.value)"
+        (click)="createTask(taskTitleInput.value)"
       >
         Create
       </button>
