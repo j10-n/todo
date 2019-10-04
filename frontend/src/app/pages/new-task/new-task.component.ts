@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TaskService } from "src/app/task.service";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Task } from "src/app/models/task.model";
 
 @Component({
@@ -11,7 +11,8 @@ import { Task } from "src/app/models/task.model";
 export class NewTaskComponent implements OnInit {
   constructor(
     private taskService: TaskService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   listId: string;
@@ -27,6 +28,7 @@ export class NewTaskComponent implements OnInit {
     this.taskService
       .createTask(title, this.listId)
       .subscribe((newTask: Task) => {
+        this.router.navigate(["../"], { relativeTo: this.route });
         console.log(newTask);
       });
   }
