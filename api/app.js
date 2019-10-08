@@ -18,6 +18,10 @@ app.use(function(req, res, next) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE"
+  );
   next();
 });
 
@@ -141,7 +145,7 @@ app.patch("/lists/:listId/tasks/:taskId", (req, res) => {
       $set: req.body
     }
   ).then(() => {
-    res.sendStatus(200);
+    res.send({ message: "Update Successful" });
   });
 });
 
